@@ -41,7 +41,7 @@ def get_teams(filters):
                             ts.id score_id,
                             ts.teamId,
                             ts.score,
-                            ts.time_stamp
+                            ts.timestamp
                         FROM Teams t
                         LEFT OUTER JOIN TeamScore ts ON ts.teamId = t.id
                         """)
