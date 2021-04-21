@@ -22,7 +22,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         url_parts = path.split("/")
         url_parts.pop(0)
 
-        resource = url_parts[1]
+        resource = url_parts[0]
         if "?" in resource:
             [resource, params] =  resource.split("?")
             filters = self.parse_query_string_parameters(params)
@@ -72,7 +72,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 def main():
     host = ''
-    port = 8089
+    port = 8088
     HTTPServer((host, port), HandleRequests).serve_forever()
 
 
