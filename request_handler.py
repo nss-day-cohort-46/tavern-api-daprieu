@@ -1,6 +1,8 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from team_scores.request import get_scores
 from teams.request import get_teams
+
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -65,7 +67,11 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         response = {}
         (resource, id, filters) = self.parse_url(self.path)
-        response = f"{get_teams(filters)}"
+        if resource == "teams":
+            response = f"{get_teams(filters)}"
+
+        if resource == "teamscores":
+            response = f"{get_scores(filters)}"
 
         self.wfile.write(response.encode())
 
