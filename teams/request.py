@@ -67,7 +67,7 @@ def get_teams(filters):
                         SELECT
                             t.id,
                             t.name,
-                            p.id player_id,
+                            p.id,
                             p.firstName,
                             p.lastName,
                             p.teamId
@@ -84,8 +84,8 @@ def get_teams(filters):
                             else:
                                 team = teams[row['id']]
 
-                            player = Player(row['player_id'], row['firstName'], row['lastName'], row['teamId'])
-                        team.players.append(player.__dict__)
+                            player = Player(row['id'], row['firstName'], row['lastName'], row['teamId'])
+                            team.players.append(player.__dict__)
 
             json_teams = []
             for team in teams.values():
